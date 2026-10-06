@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Narendra Kumar Vidda — Software Engineer</title>
+<meta name="description" content="Full-stack engineer with a Python/Django core, building real-time systems and moving into AI engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --bg: #e9edfb;
+    --bg-2: #dfe6f8;
+    --text: #151a33;
+    --text-2: #4b5273;
+    --text-3: #747b9c;
+    --glass: rgba(255, 255, 255, 0.52);
+    --glass-strong: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-edge: rgba(21, 26, 51, 0.07);
+    --glass-shadow: 0 18px 50px -18px rgba(54, 66, 140, 0.35);
+    --accent: #4457f0;
+    --accent-2: #0fa393;
+    --warm: #e8782a;
+    --chip: rgba(68, 87, 240, 0.09);
+    --blob-1: #7f8cff;
+    --blob-2: #3fd6c4;
+    --blob-3: #ffb27a;
+    --blob-opacity: 0.55;
+    --ring: rgba(68, 87, 240, 0.35);
+    --map-line: rgba(21, 26, 51, 0.1);
+    --dot: #9aa1c4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0e1f;
+      --bg-2: #101430;
+      --text: #eef1ff;
+      --text-2: #b4bad9;
+      --text-3: #8189b0;
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --glass-edge: rgba(255, 255, 255, 0.04);
+      --glass-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+      --accent: #8c9aff;
+      --accent-2: #3fe0cc;
+      --warm: #ffae6b;
+      --chip: rgba(140, 154, 255, 0.13);
+      --blob-1: #4a5bff;
+      --blob-2: #12b7a5;
+      --blob-3: #ff8a3d;
+      --blob-opacity: 0.5;
+      --ring: rgba(140, 154, 255, 0.5);
+      --map-line: rgba(255, 255, 255, 0.08);
+      --dot: #5d6590;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0e1f;
+    --bg-2: #101430;
+    --text: #eef1ff;
+    --text-2: #b4bad9;
+    --text-3: #8189b0;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-strong: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --glass-edge: rgba(255, 255, 255, 0.04);
+    --glass-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+    --accent: #8c9aff;
+    --accent-2: #3fe0cc;
+    --warm: #ffae6b;
+    --chip: rgba(140, 154, 255, 0.13);
+    --blob-1: #4a5bff;
+    --blob-2: #12b7a5;
+    --blob-3: #ff8a3d;
+    --blob-opacity: 0.5;
+    --ring: rgba(140, 154, 255, 0.5);
+    --map-line: rgba(255, 255, 255, 0.08);
+    --dot: #5d6590;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.1;
+  }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+
+  /* Background */
+  .backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; background:
+    radial-gradient(1200px 700px at 80% -10%, var(--bg-2), transparent 60%), var(--bg); }
+  .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: var(--blob-opacity); will-change: transform; }
+  .blob.b1 { width: 52vw; height: 52vw; max-width: 720px; max-height: 720px; background: var(--blob-1); top: -12%; left: -10%; animation: drift1 26s ease-in-out infinite alternate; }
+  .blob.b2 { width: 42vw; height: 42vw; max-width: 600px; max-height: 600px; background: var(--blob-2); top: 30%; right: -12%; animation: drift2 30s ease-in-out infinite alternate; }
+  .blob.b3 { width: 34vw; height: 34vw; max-width: 480px; max-height: 480px; background: var(--blob-3); bottom: -10%; left: 28%; animation: drift3 34s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(8vw, 10vh) scale(1.1); } }
+  @keyframes drift2 { to { transform: translate(-10vw, 8vh) scale(0.92); } }
+  @keyframes drift3 { to { transform: translate(6vw, -12vh) scale(1.08); } }
+
+  /* Glass */
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 0 0 1px var(--glass-edge);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    backdrop-filter: blur(24px) saturate(165%);
+    border-radius: 26px;
+  }
+
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    padding-top: 14px;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 8px 10px 8px 20px; border-radius: 999px;
+  }
+  .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links a { padding: 8px 14px; border-radius: 999px; font-size: 0.95rem; color: var(--text-2); transition: background .2s, color .2s; }
+  .nav-links a:hover { background: var(--chip); color: var(--text); }
+  .icon-btn {
+    width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--glass-border);
+    background: var(--glass-strong); color: var(--text); cursor: pointer; display: grid; place-items: center; font: inherit;
+  }
+  .icon-btn:hover { background: var(--chip); }
+  @media (max-width: 760px) { .nav-links a:not(.keep) { display: none; } }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; padding: 64px 0 40px; min-height: min(760px, 86vh); }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5rem); font-weight: 700; letter-spacing: -0.035em; }
+  .hero h1 span { display: block; color: var(--text-2); font-weight: 500; font-size: 0.5em; letter-spacing: -0.02em; margin-top: 16px; line-height: 1.2; }
+  .lede { margin-top: 24px; max-width: 52ch; color: var(--text-2); font-size: 1.1rem; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 0.98rem; border: 1px solid var(--glass-border); cursor: pointer; font-family: inherit;
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; box-shadow: 0 12px 30px -10px var(--accent); }
+  :root[data-theme="dark"] .btn.primary { color: #07091a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #07091a; } }
+  .btn.ghost { background: var(--glass-strong); color: var(--text); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .btn:hover { transform: translateY(-2px); }
+
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .fact { padding: 10px 16px; border-radius: 16px; font-size: 0.92rem; color: var(--text-2); }
+  .fact b { color: var(--text); font-weight: 600; }
+
+  /* Dispatch panel */
+  .dispatch { padding: 18px; position: relative; }
+  .dispatch-head { display: flex; justify-content: space-between; align-items: center; padding: 4px 6px 14px; font-size: 0.9rem; color: var(--text-2); }
+  .live { display: inline-flex; align-items: center; gap: 8px; }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 0 var(--accent-2); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  .map { border-radius: 18px; overflow: hidden; background: var(--glass-strong); border: 1px solid var(--glass-edge); }
+  .map svg { display: block; width: 100%; height: auto; }
+  .dispatch-foot { display: flex; justify-content: space-between; gap: 12px; padding: 14px 6px 2px; font-size: 0.92rem; }
+  .dispatch-foot .status { color: var(--text); font-weight: 500; min-height: 1.6em; }
+  .dispatch-foot .meta { color: var(--text-3); text-align: right; }
+  .ring { fill: none; stroke: var(--ring); stroke-width: 1.5; stroke-dasharray: 4 6; opacity: 0; transition: opacity .5s; }
+  .ring.on { opacity: 1; }
+  .ring-fill { fill: var(--accent); opacity: 0; transition: opacity .6s; }
+  .ring-fill.on { opacity: 0.08; }
+  .drv { fill: var(--dot); transition: fill .4s, r .4s; }
+  .drv.cand { fill: var(--accent); }
+  .drv.win { fill: var(--accent-2); }
+  .route { stroke: var(--accent-2); stroke-width: 2.5; stroke-linecap: round; fill: none; opacity: 0; }
+  .route.on { opacity: 1; transition: opacity .4s; }
+  .pin-core { fill: var(--warm); }
+  .pin-halo { fill: var(--warm); opacity: .25; }
+
+  /* Sections */
+  section { padding: 72px 0 8px; }
+  .sec-head { margin-bottom: 30px; max-width: 60ch; }
+  .sec-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+  .sec-head p { margin-top: 12px; color: var(--text-2); }
+
+  /* Timeline (real sequence) */
+  .timeline { position: relative; display: grid; gap: 18px; padding-left: 28px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 14px; bottom: 14px; width: 2px; border-radius: 2px; background: linear-gradient(var(--accent), var(--accent-2), transparent); opacity: .6; }
+  .job { padding: 26px 28px; position: relative; }
+  .job::before { content: ""; position: absolute; left: -28px; top: 34px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  .job-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; align-items: baseline; }
+  .job h3 { font-size: 1.35rem; }
+  .job .when { color: var(--text-3); font-size: 0.95rem; }
+  .job .org { color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .job ul { margin: 14px 0 0; padding-left: 18px; color: var(--text-2); }
+  .job li { margin: 7px 0; padding-left: 4px; }
+  .job li::marker { color: var(--accent-2); }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+  .proj { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .proj.hero-proj { grid-column: span 6; padding: 34px; }
+  .proj.half { grid-column: span 3; }
+  .proj h3 { font-size: 1.5rem; }
+  .hero-proj h3 { font-size: 2rem; }
+  .proj p { color: var(--text-2); }
+  .hero-proj .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .hero-proj .cols ul { margin: 0; padding-left: 18px; color: var(--text-2); }
+  .hero-proj .cols li { margin: 8px 0; }
+  .hero-proj .cols li::marker { color: var(--accent-2); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { padding: 5px 12px; border-radius: 999px; background: var(--chip); color: var(--text); font-size: 0.86rem; font-weight: 500; border: 1px solid var(--glass-edge); }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skill { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .skill h3 { font-size: 1.15rem; }
+  .skill.wide { grid-column: span 2; }
+
+  /* Education */
+  .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+  .card { padding: 28px; }
+  .card h3 { font-size: 1.3rem; margin-bottom: 16px; }
+  .edu { display: grid; gap: 16px; }
+  .edu div { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--glass-edge); }
+  .edu div:last-child { border: 0; padding: 0; }
+  .edu b { font-weight: 600; display: block; }
+  .edu small { color: var(--text-3); font-size: 0.92rem; }
+  .edu .score { font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; font-size: 1.15rem; white-space: nowrap; color: var(--accent); }
+  .card ul { margin: 0; padding-left: 18px; color: var(--text-2); }
+  .card li { margin: 9px 0; }
+  .card li::marker { color: var(--warm); }
+
+  /* Contact */
+  .contact { margin: 72px 0 40px; padding: clamp(32px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; }
+  .contact h2 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 18ch; margin: 0 auto; }
+  .contact p { color: var(--text-2); max-width: 46ch; margin: 16px auto 0; }
+  .contact .cta-row { justify-content: center; }
+  footer { text-align: center; color: var(--text-3); font-size: 0.9rem; padding: 8px 0 36px; }
+
+  /* Hero entrance (single orchestrated moment) */
+  .rise { opacity: 0; transform: translateY(18px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .rise.d1 { animation-delay: .08s; } .rise.d2 { animation-delay: .2s; } .rise.d3 { animation-delay: .32s; } .rise.d4 { animation-delay: .46s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 40px; min-height: 0; }
+    .projects { grid-template-columns: 1fr; }
+    .proj.hero-proj, .proj.half { grid-column: auto; }
+    .hero-proj .cols { grid-template-columns: 1fr; }
+    .skills { grid-template-columns: 1fr; }
+    .skill.wide { grid-column: auto; }
+    .split { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .job, .proj, .card { padding: 22px; }
+    .timeline { padding-left: 22px; }
+    .job::before { left: -22px; }
+    .dispatch-foot { flex-direction: column; }
+    .dispatch-foot .meta { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .blob, .live i { animation: none; }
+    .rise { animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<header class="nav">
+  <div class="wrap">
+    <nav class="nav-inner glass" aria-label="Main">
+      <a class="brand" href="#top">Narendra Vidda</a>
+      <div class="nav-links">
+        <a href="#work">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a class="keep" href="#contact">Contact</a>
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <div class="hero">
+    <div>
+      <h1 class="rise d1">Narendra Kumar Vidda<span>Software engineer building real-time backends, moving into AI engineering.</span></h1>
+      <p class="lede rise d2">Four years of shipping Python and Django systems: geospatial dispatch, predictive inventory, and reward platforms. I own the work from data pipeline to the screen people use.</p>
+      <div class="cta-row rise d3">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn ghost" href="mailto:nkvidda@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://github.com/nvidda-hub" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="facts rise d4">
+        <div class="fact glass" style="border-radius:16px"><b>4+ years</b> in production</div>
+        <div class="fact glass" style="border-radius:16px"><b>M.Tech</b> IIT Kanpur</div>
+        <div class="fact glass" style="border-radius:16px"><b>300+</b> LeetCode problems</div>
+      </div>
+    </div>
+
+    <aside class="dispatch glass rise d3" aria-label="Animated demo of the Samvahana dispatch matching">
+      <div class="dispatch-head">
+        <span class="live"><i></i>Dispatch engine, simplified</span>
+        <span>Samvahana</span>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 400 360" role="img" aria-label="A pickup point with a search radius that widens until the nearest driver is matched">
+          <g stroke="var(--map-line)" stroke-width="1">
+            <path d="M0 70 L400 110"/><path d="M0 180 L400 160"/><path d="M0 290 L400 250"/>
+            <path d="M80 0 L110 360"/><path d="M200 0 L190 360"/><path d="M320 0 L300 360"/>
+          </g>
+          <circle class="ring-fill" id="f3" cx="200" cy="180" r="160"/>
+          <circle class="ring" id="r1" cx="200" cy="180" r="55"/>
+          <circle class="ring" id="r2" cx="200" cy="180" r="105"/>
+          <circle class="ring" id="r3" cx="200" cy="180" r="160"/>
+          <line class="route" id="route" x1="200" y1="180" x2="200" y2="180"/>
+          <g id="drivers"></g>
+          <circle class="pin-halo" cx="200" cy="180" r="16"/>
+          <circle class="pin-core" cx="200" cy="180" r="7"/>
+        </svg>
+      </div>
+      <div class="dispatch-foot">
+        <span class="status" id="status" aria-live="polite">Looking for drivers within 1 km</span>
+        <span class="meta">Haversine + Redis GEO</span>
+      </div>
+    </aside>
+  </div>
+
+  <section id="work">
+    <div class="sec-head">
+      <h2>Where I've worked</h2>
+      <p>Most recent first. Each role shipped something people used, with tests and monitoring behind it.</p>
+    </div>
+    <div class="timeline">
+      <article class="job glass">
+        <div class="job-top"><h3>Co-Founder &amp; Director</h3><span class="when">Mar 2025 – Present</span></div>
+        <div class="org">DKBN Infra Private Limited</div>
+        <ul>
+          <li>Built and deployed dkbnipl.com end to end with a Django backend and Vite.js frontend, with uptime and error monitoring in production.</li>
+          <li>Run MEP consultancy and large industrial projects, and built internal tools that automate procurement, invoicing and documentation, with tests on the calculation and document logic.</li>
+        </ul>
+      </article>
+      <article class="job glass">
+        <div class="job-top"><h3>Software Development Engineer II</h3><span class="when">Aug 2023 – Jan 2024</span></div>
+        <div class="org">Yield</div>
+        <ul>
+          <li>Led the user-growth system end to end: referrals, coupons and coins on NestJS.</li>
+          <li>Built the web app with Vite.js, React, TypeScript and Tailwind CSS.</li>
+          <li>Tested edge cases like duplicate redemptions and expiry, and added logging to trace reward flows.</li>
+        </ul>
+      </article>
+      <article class="job glass">
+        <div class="job-top"><h3>Software Engineer</h3><span class="when">Apr 2022 – Aug 2023</span></div>
+        <div class="org">MediKaBazaar</div>
+        <ul>
+          <li>Contributed to VIZI 2.0, an ML product that predicts hospital stock states: overstock, understock and near-expiry. Built product features around the live model.</li>
+          <li>Added unit and API tests for model-consuming features, plus monitoring to catch prediction pipeline failures.</li>
+          <li>Introduced ReactJS to internal tools: a product add/update form and an advanced search filter.</li>
+        </ul>
+      </article>
+      <article class="job glass">
+        <div class="job-top"><h3>Software Engineer</h3><span class="when">Jul 2021 – Apr 2022</span></div>
+        <div class="org">Monkey Adventures</div>
+        <ul>
+          <li>Moved long-running work (lead processing, client emails) onto Redis background tasks.</li>
+          <li>Built an HTML-to-PDF pipeline for client documents, and added failure alerts and retries for background jobs.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p>A self-built platform I took from schema to app store build, plus two earlier experiments.</p>
+    </div>
+    <div class="projects">
+      <article class="proj hero-proj glass">
+        <h3>Samvahana: real-time logistics and dispatch</h3>
+        <p>A Porter-style platform that matches customers with nearby drivers and tracks the trip live.</p>
+        <div class="cols">
+          <ul>
+            <li>Celery dispatch engine that widens its search radius, then ranks candidates with Haversine distance and Redis GEO.</li>
+            <li>Live driver location over Django Channels WebSockets.</li>
+            <li>Django REST backend with GeoDjango and PostGIS; React Native (Expo) apps for drivers and customers.</li>
+          </ul>
+          <ul>
+            <li>Unit tests for matching and distance logic, API tests for ride and driver flows, and end-to-end tests of request to assignment.</li>
+            <li>Structured logs, health checks and Celery monitoring, with alerts for failed dispatches and dropped WebSocket connections.</li>
+          </ul>
+        </div>
+        <div class="tags"><span class="tag">Django REST</span><span class="tag">PostGIS</span><span class="tag">Redis GEO</span><span class="tag">Celery</span><span class="tag">Channels</span><span class="tag">React Native</span><span class="tag">Docker</span></div>
+      </article>
+      <article class="proj half glass">
+        <h3>Voice assistant</h3>
+        <p>A desktop assistant that listens, answers from Wikipedia and speaks back. My first speech and NLP pipeline.</p>
+        <div class="tags"><span class="tag">speech_recognition</span><span class="tag">pyttsx3</span><span class="tag">Wikipedia API</span></div>
+      </article>
+      <article class="proj half glass">
+        <h3>Django e-commerce</h3>
+        <p>A full shopping site with a product catalog, cart and order flow.</p>
+        <div class="tags"><span class="tag">Django</span><span class="tag">PostgreSQL</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Python and Django at the core, with the frontend, infra and testing habits to ship whole features.</p>
+    </div>
+    <div class="skills">
+      <div class="skill glass">
+        <h3>Languages</h3>
+        <div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="skill glass wide">
+        <h3>Backend and data</h3>
+        <div class="tags"><span class="tag">Django</span><span class="tag">Django REST Framework</span><span class="tag">NestJS</span><span class="tag">GeoDjango</span><span class="tag">PostGIS</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">Django Channels</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span></div>
+      </div>
+      <div class="skill glass">
+        <h3>Frontend</h3>
+        <div class="tags"><span class="tag">React</span><span class="tag">React Native (Expo)</span><span class="tag">Vite.js</span><span class="tag">Tailwind CSS</span></div>
+      </div>
+      <div class="skill glass">
+        <h3>Applied AI</h3>
+        <div class="tags"><span class="tag">Predictive model integration</span><span class="tag">Speech and TTS</span><span class="tag">Geospatial matching</span><span class="tag">Feature flags</span></div>
+      </div>
+      <div class="skill glass">
+        <h3>Testing and observability</h3>
+        <div class="tags"><span class="tag">pytest</span><span class="tag">Postman</span><span class="tag">CI-gated tests</span><span class="tag">Logging and tracing</span><span class="tag">Alerting</span></div>
+      </div>
+      <div class="skill glass wide">
+        <h3>Infrastructure and tools</h3>
+        <div class="tags"><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span><span class="tag">GHCR</span><span class="tag">Git</span><span class="tag">Claude Code</span><span class="tag">System design</span><span class="tag">Data structures and algorithms</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><h2>Education and recognition</h2></div>
+    <div class="split">
+      <div class="card glass">
+        <h3>IIT Kanpur</h3>
+        <div class="edu">
+          <div><span><b>M.Tech, Chemical Engineering</b><small>2019 – 2021</small></span><span class="score">9.0 / 10 CPI</span></div>
+          <div><span><b>B.Tech, Chemical Engineering</b><small>2013 – 2017</small></span><span class="score">5.2 / 10 CPI</span></div>
+        </div>
+      </div>
+      <div class="card glass">
+        <h3>Highlights</h3>
+        <ul>
+          <li>AIR 820 in GATE Chemical Engineering 2018, out of 15,858.</li>
+          <li>Nominated for the Academic Excellence Award 2021, IIT Kanpur.</li>
+          <li>Teaching assistant for labs and grading; ran MATLAB, ASPEN and COMSOL workshops.</li>
+          <li>Designed the Chemineers Society webpage.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="contact glass">
+      <h2>Have a backend or AI problem to solve?</h2>
+      <p>I'm open to SDE II, full-stack and AI engineering roles. Email is the fastest way to reach me.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:nkvidda@gmail.com">nkvidda@gmail.com</a>
+        <a class="btn ghost" href="tel:+918000503718">+91 80005 03718</a>
+        <a class="btn ghost" href="https://github.com/nvidda-hub" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/search/results/people/?keywords=Narendra%20Vidda" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="yr">2026</span> Narendra Kumar Vidda</footer>
+
+<script>
+(function () {
+  // Theme toggle
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem("theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Dispatch demo: radius widens until a driver is matched
+  var NS = "http://www.w3.org/2000/svg", cx = 200, cy = 180;
+  var pts = [ [250,150],[160,215],[290,235],[120,110],[235,300],[330,110],[70,230],[300,40],[110,305],[345,300] ];
+  var g = document.getElementById("drivers"), dots = [];
+  pts.forEach(function (p) {
+    var c = document.createElementNS(NS, "circle");
+    c.setAttribute("cx", p[0]); c.setAttribute("cy", p[1]); c.setAttribute("r", 6); c.setAttribute("class", "drv");
+    g.appendChild(c);
+    dots.push({ el: c, d: Math.hypot(p[0]-cx, p[1]-cy), x: p[0], y: p[1] });
+  });
+  var rings = [55,105,160].map(function (r, i) { return { el: document.getElementById("r"+(i+1)), r: r }; });
+  var fill = document.getElementById("f3"), route = document.getElementById("route"), status = document.getElementById("status");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var km = ["1 km","2 km","3 km"];
+
+  function reset() {
+    rings.forEach(function (r) { r.el.classList.remove("on"); });
+    fill.classList.remove("on"); route.classList.remove("on");
+    dots.forEach(function (d) { d.el.setAttribute("class","drv"); d.el.setAttribute("r",6); });
+    status.textContent = "Looking for drivers within 1 km";
+  }
+  function step(i) {
+    rings[i].el.classList.add("on");
+    var found = dots.filter(function (d) { return d.d <= rings[i].r; });
+    found.forEach(function (d) { d.el.classList.add("cand"); });
+    return found;
+  }
+  function run() {
+    reset();
+    var t = 0;
+    function at(ms, fn) { t += ms; setTimeout(fn, t); }
+    at(700, function () { var f = step(0); status.textContent = f.length ? f.length + " drivers found" : "No drivers within 1 km. Widening search."; });
+    at(1500, function () { status.textContent = "Searching within 2 km"; var f = step(1); status.textContent = f.length + " drivers within 2 km. Ranking by distance."; });
+    at(1700, function () { step(2); fill.classList.add("on"); status.textContent = "Ranking candidates by distance"; });
+    at(1400, function () {
+      var best = dots.slice().sort(function (a,b) { return a.d - b.d; })[0];
+      best.el.setAttribute("class","drv win"); best.el.setAttribute("r",9);
+      route.setAttribute("x2", best.x); route.setAttribute("y2", best.y); route.classList.add("on");
+      status.textContent = "Driver assigned, " + (best.d / 52).toFixed(1) + " km away";
+    });
+    at(3600, run);
+  }
+  if (reduce) {
+    reset(); step(0); step(1); step(2); fill.classList.add("on");
+    var best = dots.slice().sort(function (a,b) { return a.d - b.d; })[0];
+    best.el.setAttribute("class","drv win"); best.el.setAttribute("r",9);
+    route.setAttribute("x2", best.x); route.setAttribute("y2", best.y); route.classList.add("on");
+    status.textContent = "Driver assigned, " + (best.d / 52).toFixed(1) + " km away";
+  } else { run(); }
+})();
+</script>
+</body>
+</html>
